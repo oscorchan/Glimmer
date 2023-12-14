@@ -10,4 +10,4 @@ def index(request):
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
-    return HttpResponse(f"{product.name} {product.price}€")
+    return render(request, 'store/product.html', context={"product": product})
