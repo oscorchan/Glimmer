@@ -4,4 +4,11 @@
 
 <h1> Glimmer </h1>
 
+{% for product in products %}
+
+<h2>{{ product.name }}</h2>
+<img src="{{ product.thumbnail.url }}" alt="{{ product.name }}">
+
+{% endfor %}
+
 {% endblock %}
