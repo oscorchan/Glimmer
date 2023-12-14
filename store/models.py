@@ -18,6 +18,7 @@ Produits:
     
 class Product(models.Model):
     name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=128)
     price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=0)
     material1 = models.CharField(max_length=50)
@@ -26,7 +27,7 @@ class Product(models.Model):
     gold_color = models.CharField(max_length=50, blank=True)
     category = models.CharField(max_length=50)
     description = models.TextField(blank=True)
-    thumbnail = models.ImageField(upload_to='products', blank=True, null=True)
+    thumbnail = models.ImageField(upload_to='products')
     
     def __str__(self):
         return self.name
