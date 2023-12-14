@@ -7,24 +7,24 @@ Produits:
 -Nom
 -Prix
 -Quantité en stock
--Matériaux
+-Matériaux 1
+-Matériaux 2
+-Matériaux 3
+-Couleur Or
 -Catégorie
 -Description
 -Image
 '''
-
-class Material(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
     
 class Product(models.Model):
-    name = models.CharField(max_lenght=50)
-    price = models.DecimalField(default=0)
+    name = models.CharField(max_length=50)
+    price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=0)
-    materials = models.ManyToManyField(Material)
-    category = models.CharField(max_lenght=50)
+    material1 = models.CharField(max_length=50)
+    material2 = models.CharField(max_length=50, blank=True)
+    material3 = models.CharField(max_length=50, blank=True)
+    gold_color = models.CharField(max_length=50, blank=True)
+    category = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     thumbnail = models.ImageField(upload_to='products', blank=True, null=True)
     
