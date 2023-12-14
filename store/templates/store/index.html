@@ -4,9 +4,12 @@
 
 {% for product in products %}
 
+<a href=" {% url "product" product.slug %}">
 <h2>{{ product.name }}</h2>
+</a>
 <h3>{{ product.price }}€</h3>
 <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}">
+
 
 {% endfor %}
 
