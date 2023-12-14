@@ -1,10 +1,11 @@
 from django.db import models
+from django.utils.text import slugify
 
-# Create your models here.
 '''
 Produits:
 
 -Nom
+-lien
 -Prix
 -Quantité en stock
 -Matériaux 1
@@ -18,7 +19,7 @@ Produits:
     
 class Product(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=128)
+    slug = models.SlugField(max_length=128, unique=True, blank=True)
     price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=0)
     material1 = models.CharField(max_length=50)
@@ -28,6 +29,11 @@ class Product(models.Model):
     category = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     thumbnail = models.ImageField(upload_to='products')
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
     
     def __str__(self):
         return self.name
