@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model, login as auth_login, logout as auth_logout
+from django.contrib.auth import get_user_model, login as auth_login, logout as auth_logout, authenticate
 from django.contrib import messages
 
 User = get_user_model()
@@ -21,6 +21,7 @@ def signup(request):
                                         password=password)
         
         auth_login(request, user)
+        messages.success(request, "Inscription réussie.")
         return redirect('index')
     
     return render(request, 'accounts/signup.html')
@@ -29,6 +30,14 @@ def login(request):
     if request.method =='POST':
         username = request.POST.get("username")
         password = request.POST.get("password")
+        
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, "Connexion réussie.")
+            return redirect('index')
+        else:
+            messages.error(request, "Nom d'utilisateur ou mot de passe incorect.")
     
     return render(request, 'accounts/login.html')
 
