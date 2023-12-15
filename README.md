@@ -10,4 +10,4 @@ Etapes nécesssaires pour débuter le projet:
 3- Installer les dépendances (pip install -r requirements.txt)
 4- Démarer le serveur (python manage.py runserver)
 5- Création super-utilisateur (python manage.py createsuperuser)
-6- Se connecter à la page admin ("adresse du site/admin)
+6- Se connecter à la page admin (adresse du site/admin)
