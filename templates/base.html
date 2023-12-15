@@ -9,6 +9,11 @@
         <h1> Glimmer </h1>
     </a>
 
+    {% if not user.is_authenticated %}
+    
+        <a href="{% url "signup" %}">Inscription</a>
+    
+    {% endif %}
 
     {% block content %}
     {% endblock  %}
