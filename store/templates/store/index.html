@@ -2,15 +2,55 @@
 
 {% block content %}
 
-{% for product in products %}
+<!-- Début de la barre de filtres -->
+<div class="filter-bar">
+    <div class="filter-option">
+        <label for="price">Trier par :</label>
+        <select id="price">
+            <option value="ascending">Prix croissants</option>
+            <option value="descending">Prix décroissants</option>
+            <option value="alphabatic">A-Z</option>
+            <option value="Non-alphabatic">Z-A</option>
+        </select>
+    </div>
+    <div class="filter-option">
+        <label for="price-min">Prix min :</label>
+        <input type="number" id="price-min" name="price_min" placeholder="0">
+    </div>
+    <div class="filter-option">
+        <label for="price-max">Prix max :</label>
+        <input type="number" id="price-max" name="price_max" placeholder="1000">
+    </div>
+    <div class="filter-option">
+        <label>Matériaux :</label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="gold" name="material" value="gold">
+            <label for="gold">Or</label>
 
-<a href=" {% url "product" product.slug %}">
-<h2>{{ product.name }}</h2>
-</a>
-<h3>{{ product.price }}€</h3>
-<img src="{{ product.thumbnail.url }}" alt="{{ product.name }}">
+            <input type="checkbox" id="silver" name="material" value="silver">
+            <label for="silver">Argent</label>
 
+            <input type="checkbox" id="platinum" name="material" value="platinum">
+            <label for="platinum">Platine</label>
 
-{% endfor %}
+            <input type="checkbox" id="steel" name="material" value="steel">
+            <label for="platinum">Acier</label>
+        </div>
+    </div>
+</div>
+<!-- Fin de la barre de filtres -->
+
+<!-- Produits -->
+<div class="products-grid">
+    {% for product in products %}
+        <div class="product-container">
+            <a href="{% url 'product' product.slug %}">
+                <h2>{{ product.name }}</h2>
+                <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" class="product-image">
+            </a>
+            <h3>{{ product.price }}€</h3>
+        </div>
+    {% endfor %}
+</div>
 
 {% endblock %}
