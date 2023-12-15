@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from shop.settings import AUTH_USER_MODEL
 
 '''
 Produits:
@@ -42,13 +43,20 @@ class Product(models.Model):
 """
 Commandes:
 
--Articles
+-Produit
 -Utilisateur
 -Quantité
 -Commandé (oui ou non)
 """
 
-
+class Order(models.Model):
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default = 1)
+    ordered = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f"{self.product.name} ({self.product.quantity})"
 
 
 """
