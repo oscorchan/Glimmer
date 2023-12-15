@@ -10,6 +10,7 @@ def signup(request):
         firstname = request.POST.get("firstname")
         lastname = request.POST.get("lastname")
         password = request.POST.get("password")
+        email = request.POST.get("email")
         
         if User.objects.filter(username=username).exists():
             messages.error(request, "Un utilisateur avec ce nom d'utilisateur existe déjà.")
@@ -18,7 +19,8 @@ def signup(request):
         user = User.objects.create_user(username=username, 
                                         first_name=firstname, 
                                         last_name=lastname, 
-                                        password=password)
+                                        password=password,
+                                        email=email)
         
         auth_login(request, user)
         messages.success(request, "Inscription réussie.")

@@ -24,6 +24,7 @@
 
     {% else %}
 
+        {{user.username}}
         <a href="{% url 'logout' %}">Déconnexion</a>
     
     {% endif %}

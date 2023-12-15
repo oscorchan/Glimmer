@@ -37,3 +37,25 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
+    
+    
+"""
+Commandes:
+
+-Articles
+-Utilisateur
+-Quantité
+-Commandé (oui ou non)
+"""
+
+
+
+
+"""
+Panier:
+
+-Utilisateur
+-Articles
+-Commandés (oui ou non)
+-Date de la commande
+"""

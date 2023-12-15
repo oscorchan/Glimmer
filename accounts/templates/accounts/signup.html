@@ -6,6 +6,10 @@
     <form method="POST">
         {% csrf_token %}
         <div>
+            <label for="email">Adresse email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div>
             <label for="username">Nom d'utilisateur:</label>
             <input type="text" id="username" name="username" required>
         </div>
