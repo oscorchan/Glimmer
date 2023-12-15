@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model, login as auth_login
+from django.contrib.auth import get_user_model, login as auth_login, logout as auth_logout
 from django.contrib import messages
 
 User = get_user_model()
@@ -31,3 +31,7 @@ def login(request):
         password = request.POST.get("password")
     
     return render(request, 'accounts/login.html')
+
+def logout(request):
+    auth_logout(request)
+    return redirect('index')

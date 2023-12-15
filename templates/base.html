@@ -13,13 +13,11 @@
     
         <a href="{% url "signup" %}">Inscription</a>
         <a href="{% url "login" %}">Connexion</a>
-    
-    {% endif %}
+        
+    {% else %}
 
-    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Déconnexion</a>
     
-    
-
     {% endif %}
 
     {% block content %}
