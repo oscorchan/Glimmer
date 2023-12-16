@@ -1,0 +1,100 @@
+/* Style de la barre de filtres */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-bottom: 2px solid #ccc;
+    align-items: center;
+}
+
+.filter-option {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-option label {
+    margin-right: 10px;
+}
+
+.filter-option select {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 10px; /* Espace entre les checkboxes */
+}
+
+/* Style pour les cases à cocher et leurs étiquettes */
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    margin-right: 20px; /* Espace après l'étiquette */
+    cursor: pointer;
+}
+
+/* Style général pour la grille des produits */
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Répartit uniformément avec de l'espace autour de chaque élément */
+    gap: 20px; /* Espace entre les produits */
+    margin-top: 30px; /* Espace supplémentaire au-dessus de la première rangée de produits */
+}
+
+/* Style des conteneurs de produits */
+.product-container {
+    width: 200px; /* ou la largeur souhaitée */
+    text-align: center;
+    padding: 20px;
+    border: 2px solid black; /* Ajoute une bordure noire autour du produit */
+}
+
+.product-container a {
+    color: black; /* Définit la couleur du texte en noir */
+    text-decoration: none; /* Supprime le soulignement du lien */
+}
+
+/* Style des titres de produits */
+.product-container h2 {
+    font-size: 1.5rem; /* Taille de police plus grande pour les titres */
+    margin: 0 0 5px 0;
+}
+
+/* Style des images des produits */
+.product-container img {
+    width: 100%; /* S'assure que l'image ne dépasse pas le conteneur */
+    height: auto; /* Garde le rapport hauteur/largeur */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style des prix des produits */
+.product-container h3 {
+    font-size: 1.2rem;
+}
+
+.filter-option input[type="number"] {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100px; /* Largeur fixe pour les champs de saisie */
+}
+
+/* Style pour le nom d'utilisateur dans la barre de navigation */
+.username {
+    margin-right: 20px; /* Ajoutez plus d'espace à droite du nom d'utilisateur */
+    color: #fff; /* Couleur du texte, ajustez selon le besoin */
+    /* Vous pouvez ajouter d'autres propriétés de style ici si nécessaire */
+}
+
