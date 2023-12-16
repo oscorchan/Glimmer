@@ -6,58 +6,64 @@
 
 <!-- Début de la barre de filtres -->
 
-<form method="get" action="{% url 'index' %}">
+<form id="filter-form" method="get" action="{% url 'index' %}">
     <div class="filter-bar">
         <div class="filter-option">
             <label for="price">Trier par :</label>
             <select id="price" name="sort_order">
-                <option value="ascending">Prix croissants</option>
-                <option value="descending">Prix décroissants</option>
-                <option value="alphabatic">A-Z</option>
-                <option value="Non-alphabatic">Z-A</option>
+                <option value="ascending" {% if sort_order == "ascending" %}selected{% endif %}>Prix croissants</option>
+                <option value="descending" {% if sort_order == "descending" %}selected{% endif %} >Prix décroissants</option>
+                <option value="alphabatic"{% if sort_order == "alphabatic" %}selected{% endif %}>A-Z</option>
+                <option value="Non-alphabatic" {% if sort_order == "Non-alphabatic" %}selected{% endif %}>Z-A</option>
             </select>
         </div>
         <div class="filter-option">
             <label for="price-min">Prix min :</label>
-            <input type="number" id="price-min" name="price_min" placeholder="0">
+            <input type="number" id="price-min" name="price_min" value="{{min_price}}">
         </div>
         <div class="filter-option">
             <label for="price-max">Prix max :</label>
-            <input type="number" id="price-max" name="price_max" placeholder="1000">
+            <input type="number" id="price-max" name="price_max" value="{{max_price}}">
         </div>
         <div class="filter-option">
             <label>Matériaux :</label>
             <div class="checkbox-group">
-                <input type="checkbox" id="gold" name="material" value="Or">
+                <input type="checkbox" id="gold" name="material" value="Or" {% if "Or" in selected_materials %} checked {% endif %}>
                 <label for="gold">Or</label>
     
-                <input type="checkbox" id="silver" name="material" value="Argent">
+                <input type="checkbox" id="silver" name="material" value="Argent" {% if "Argent" in selected_materials %} checked {% endif %}>
                 <label for="silver">Argent</label>
     
-                <input type="checkbox" id="platinum" name="material" value="Platine">
+                <input type="checkbox" id="platinum" name="material" value="Platine" {% if "Platine" in selected_materials %} checked {% endif %}>
                 <label for="platinum">Platine</label>
     
-                <input type="checkbox" id="steel" name="material" value="Acier">
+                <input type="checkbox" id="steel" name="material" value="Acier" {% if "Acier" in selected_materials %} checked {% endif %}>
                 <label for="platinum">Acier</label>
 
-                <input type="checkbox" id="rubis" name="material" value="Rubis">
+                <input type="checkbox" id="rubis" name="material" value="Rubis" {% if "Rubis" in selected_materials %} checked {% endif %}>
                 <label for="gold">Rubis</label>
     
-                <input type="checkbox" id="saphir" name="material" value="Saphir">
+                <input type="checkbox" id="saphir" name="material" value="Saphir" {% if "Saphir" in selected_materials %} checked {% endif %}>
                 <label for="silver">Saphir</label>
     
-                <input type="checkbox" id="emeraude" name="material" value="Emeraude">
+                <input type="checkbox" id="emeraude" name="material" value="Emeraude" {% if "Emeraude" in selected_materials %} checked {% endif %}> 
                 <label for="platinum">Emeraude</label>
     
-                <input type="checkbox" id="diamant" name="material" value="Diamant">
+                <input type="checkbox" id="diamant" name="material" value="Diamant"> {% if "Diamant" in selected_materials %} checked {% endif %}
                 <label for="platinum">Diamant</label>
             </div>
         </div>
     </div>
     <!-- Fin de la barre de filtres -->
     <!-- Ajouter un bouton pour soumettre le formulaire -->
-    <input type="submit" value="Filtrer">
 </form>
+
+
+<script>
+    document.getElementById('filter-form').addEventListener('change', function() {
+        this.submit();
+    });
+</script>
 
 
 
