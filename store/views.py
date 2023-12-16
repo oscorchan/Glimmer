@@ -27,6 +27,28 @@ def add_to_cart(request, slug):
     return redirect(reverse("product", kwargs={"slug": slug}))
 
 def cart(request):
-    cart = get_object_or_404(Cart, user=request.user)
+    cart, _ = Cart.objects.get_or_create(user=request.user)
+    is_empty = cart.orders.count() == 0
     
-    return render(request, 'store/cart.html', context={"orders": cart.orders.all()})
+    return render(request, 'store/cart.html', context={"orders": cart.orders.all(), "is_empty": is_empty})
+
+def increase_quantity(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    order.quantity += 1
+    order.save()
+    return redirect('cart')
+
+def decrease_quantity(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+
+    if order.quantity == 1:
+        order.delete()
+    else:
+        order.quantity -= 1
+        order.save()
+
+    return redirect('cart')
+
+def remove_from_cart(request, order_id):
+    Order.objects.filter(id=order_id).delete()
+    return redirect('cart')

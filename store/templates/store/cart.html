@@ -2,11 +2,26 @@
 
 {% block content %}
 
-    {% for order in orders %}
+    {% if is_empty %}
+        <p>Votre panier est vide.</p>
+    {% else %}
+        {% for order in orders %}
+            <div class="cart-item">
+                <h2>{{ order.product.name }}</h2>
+                <img src="{{ order.product.thumbnail.url }}" alt="{{ order.product.name }}" class='product-image-cart'>
+                <p>Quantité : {{ order.quantity }}</p>
+                <div class="cart-item-actions">
+                    <!-- Bouton pour augmenter la quantité -->
+                    <a href="{% url 'increase_quantity' order.id %}">+</a>
 
-        <h2>{{order.product.name}}</h2>
-        <img src="{{order.product.thumbnail.url}}" alt={{order.product.name}} class='product-image-cart'>
+                    <!-- Bouton pour diminuer la quantité -->
+                    <a href="{% url 'decrease_quantity' order.id %}">-</a>
 
-    {% endfor %}    
+                    <!-- Bouton pour supprimer l'article -->
+                    <a href="{% url 'remove_from_cart' order.id %}">Supprimer</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 
 {% endblock content %}
