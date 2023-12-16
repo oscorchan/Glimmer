@@ -1,9 +1,36 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from store.models import Cart, Order, Product
 from django.urls import reverse
+from django.db.models import Q
 
 def index(request):
     products = Product.objects.all()
+    
+    sort_order = request.GET.get('sort_order')
+    min_price = request.GET.get('price_min')
+    max_price = request.GET.get('price_max')
+    materials = request.GET.getlist('material')
+    
+    if min_price:
+        products = products.filter(price__gte=min_price)
+    if max_price:
+        products = products.filter(price__lte=max_price)
+
+    if materials:
+        material_queries = [Q(material1=material) | Q(material2=material) | Q(material3=material) for material in materials]
+        query = material_queries.pop()
+        for item in material_queries:
+            query &= item
+        products = products.filter(query)
+
+    if sort_order == 'ascending':
+        products = products.order_by('price')
+    elif sort_order == 'descending':
+        products = products.order_by('-price')
+    elif sort_order == 'alphabetic':
+        products = products.order_by('name')
+    elif sort_order == 'non-alphabetic':
+        products = products.order_by('-name')
     
     return render(request, 'store/index.html', context={"products": products})
 

@@ -5,42 +5,61 @@
 {% load static %}
 
 <!-- Début de la barre de filtres -->
-<div class="filter-bar">
-    <div class="filter-option">
-        <label for="price">Trier par :</label>
-        <select id="price">
-            <option value="ascending">Prix croissants</option>
-            <option value="descending">Prix décroissants</option>
-            <option value="alphabatic">A-Z</option>
-            <option value="Non-alphabatic">Z-A</option>
-        </select>
-    </div>
-    <div class="filter-option">
-        <label for="price-min">Prix min :</label>
-        <input type="number" id="price-min" name="price_min" placeholder="0">
-    </div>
-    <div class="filter-option">
-        <label for="price-max">Prix max :</label>
-        <input type="number" id="price-max" name="price_max" placeholder="1000">
-    </div>
-    <div class="filter-option">
-        <label>Matériaux :</label>
-        <div class="checkbox-group">
-            <input type="checkbox" id="gold" name="material" value="gold">
-            <label for="gold">Or</label>
 
-            <input type="checkbox" id="silver" name="material" value="silver">
-            <label for="silver">Argent</label>
+<form method="get" action="{% url 'index' %}">
+    <div class="filter-bar">
+        <div class="filter-option">
+            <label for="price">Trier par :</label>
+            <select id="price" name=>
+                <option value="ascending">Prix croissants</option>
+                <option value="descending">Prix décroissants</option>
+                <option value="alphabatic">A-Z</option>
+                <option value="Non-alphabatic">Z-A</option>
+            </select>
+        </div>
+        <div class="filter-option">
+            <label for="price-min">Prix min :</label>
+            <input type="number" id="price-min" name="price_min" placeholder="0">
+        </div>
+        <div class="filter-option">
+            <label for="price-max">Prix max :</label>
+            <input type="number" id="price-max" name="price_max" placeholder="1000">
+        </div>
+        <div class="filter-option">
+            <label>Matériaux :</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="gold" name="material" value="Or">
+                <label for="gold">Or</label>
+    
+                <input type="checkbox" id="silver" name="material" value="Argent">
+                <label for="silver">Argent</label>
+    
+                <input type="checkbox" id="platinum" name="material" value="Platine">
+                <label for="platinum">Platine</label>
+    
+                <input type="checkbox" id="steel" name="material" value="Acier">
+                <label for="platinum">Acier</label>
 
-            <input type="checkbox" id="platinum" name="material" value="platinum">
-            <label for="platinum">Platine</label>
-
-            <input type="checkbox" id="steel" name="material" value="steel">
-            <label for="platinum">Acier</label>
+                <input type="checkbox" id="rubis" name="material" value="Rubis">
+                <label for="gold">Rubis</label>
+    
+                <input type="checkbox" id="saphir" name="material" value="Saphir">
+                <label for="silver">Saphir</label>
+    
+                <input type="checkbox" id="emeraude" name="material" value="Emeraude">
+                <label for="platinum">Emeraude</label>
+    
+                <input type="checkbox" id="diamant" name="material" value="Diamant">
+                <label for="platinum">Diamant</label>
+            </div>
         </div>
     </div>
-</div>
-<!-- Fin de la barre de filtres -->
+    <!-- Fin de la barre de filtres -->
+    <!-- Ajouter un bouton pour soumettre le formulaire -->
+    <input type="submit" value="Filtrer">
+</form>
+
+
 
 <!-- Produits -->
 <div class="products-grid">
