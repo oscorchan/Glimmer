@@ -1,7 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from store.models import Cart
-
-from store.models import Product
+from django.shortcuts import render, get_object_or_404, redirect
+from store.models import Cart, Order, Product
+from django.urls import reverse
 
 def index(request):
     products = Product.objects.all()
@@ -15,4 +14,14 @@ def product_detail(request, slug):
 def add_to_cart(request, slug):
     user = request.user
     product = get_object_or_404(Product, slug=slug)
-    Cart.objects.get(user=user)
+    cart, _ = Cart.objects.get_or_create(user=user)
+    order, created = Order.objects.get_or_create(user=user, product=product)
+    
+    if created:
+        cart.orders.add(order)
+        cart.save()
+    else:
+        order.quantity += 1
+        order.save()
+        
+    return redirect(reverse("product", kwargs={"slug": slug}))
