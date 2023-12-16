@@ -21,7 +21,7 @@
         <a href="{% url 'index' %}" class="nav-title"><h1>Glimmer</h1></a>
 
         <div class="nav-right">
-            <a href="">Panier</a>
+            <a href="{% url "cart" %}">Panier({{ user.cart.orders.count}})</a>
         </div>
 
     </div>
