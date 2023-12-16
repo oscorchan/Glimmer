@@ -74,3 +74,9 @@ class Cart(models.Model):
     
     def __str__(self):
         return self.user.username
+    
+    def total_items(self):
+        total = 0
+        for order in self.orders.all():
+            total += order.quantity
+        return total
