@@ -47,6 +47,7 @@ Commandes:
 -Utilisateur
 -Quantité
 -Commandé (oui ou non)
+-Date de la commande
 """
 
 class Order(models.Model):
@@ -65,8 +66,6 @@ Panier:
 
 -Utilisateur
 -Articles
--Commandés (oui ou non)
--Date de la commande
 """
 
 class Cart(models.Model):

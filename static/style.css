@@ -142,3 +142,11 @@
     border-radius: 5px;
     width: 100px; /* Largeur fixe pour les champs de saisie */
 }
+
+/* Style pour le nom d'utilisateur dans la barre de navigation */
+.username {
+    margin-right: 20px; /* Ajoutez plus d'espace à droite du nom d'utilisateur */
+    color: #fff; /* Couleur du texte, ajustez selon le besoin */
+    /* Vous pouvez ajouter d'autres propriétés de style ici si nécessaire */
+}
+
