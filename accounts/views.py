@@ -46,3 +46,9 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('index')
+
+def compte(request):
+    if not request.user.is_authenticated:
+        return render(request, 'account/compte.html')
+    else:
+        return redirect('index')

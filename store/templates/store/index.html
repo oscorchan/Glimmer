@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock %}
+
 {% block content %}
 
-{% load static %}
 
 <!-- Début de la barre de filtres -->
 

@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from store.views import index, product_detail, add_to_cart, cart, increase_quantity, decrease_quantity, remove_from_cart
 from django.conf.urls.static import static
-from accounts.views import signup, login, logout
+from accounts.views import signup, login, logout, compte
 
 from shop import settings
 
@@ -34,4 +34,5 @@ urlpatterns = [
     path('increase-quantity/<int:order_id>/', increase_quantity, name='increase_quantity'),
     path('decrease-quantity/<int:order_id>/', decrease_quantity, name='decrease_quantity'),
     path('remove-from-cart/<int:order_id>/', remove_from_cart, name='remove_from_cart'),
+    path('compte/', compte, name='compte'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

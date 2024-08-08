@@ -3,30 +3,34 @@
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <title>Glimmer</title>
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <div class="navbar">
-        <div class="nav-left">
-            {% if not user.is_authenticated %}
-                <a href="{% url 'signup' %}">Inscription</a>
-                <a href="{% url 'login' %}">Connexion</a>
-            {% else %}
-                <span class='username'>{{ user.username }}</span>
-                <a href="{% url 'logout' %}">Déconnexion</a>
-            {% endif %}
+    <!-- Barre de navigation principale -->
+    <nav class="main-nav">
+        <div class="logo">
+            <a href="{% url 'index' %}">GLIMMER</a>
         </div>
-
-        <a href="{% url 'index' %}" class="nav-title"><h1>Glimmer</h1></a>
-
-        <div class="nav-right">
-            {% if user.is_authenticated %}
-                <a href="{% url 'cart' %}">Panier({{ user.cart.total_items }})</a>
-            {% endif %}
+        <ul class="nav-links">
+            <li><a href="#">Bracelets</a></li>
+            <li><a href="#">Colliers</a></li>
+            <li><a href="#">Boucles d'oreilles</a></li>
+            <li><a href="#">Bagues</a></li>
+            <li><a href="#">Nouveautés</a></li>
+        </ul>
+        <div class="nav-actions">
+            <input type="text" placeholder="Rechercher">
+            <a href="{% url 'cart' %}" class="icon">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="{% url 'compte' %}" class="icon">
+                <i class="fas fa-user"></i>
+            </a>
         </div>
-
-    </div>
+    </nav>
 
     {% if messages %}
     {% for message in messages %}

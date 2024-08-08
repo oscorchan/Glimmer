@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from store.models import Cart, Order, Product
 from django.urls import reverse
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     products = Product.objects.all()
@@ -57,6 +58,7 @@ def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
     return render(request, 'store/product.html', context={"product": product})
 
+@login_required
 def add_to_cart(request, slug):
     user = request.user
     product = get_object_or_404(Product, slug=slug)
@@ -72,18 +74,21 @@ def add_to_cart(request, slug):
         
     return redirect(reverse("product", kwargs={"slug": slug}))
 
+@login_required
 def cart(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     is_empty = cart.orders.count() == 0
     
     return render(request, 'store/cart.html', context={"orders": cart.orders.all(), "is_empty": is_empty})
 
+@login_required
 def increase_quantity(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     order.quantity += 1
     order.save()
     return redirect('cart')
 
+@login_required
 def decrease_quantity(request, order_id):
     order = get_object_or_404(Order, id=order_id)
 
@@ -95,6 +100,7 @@ def decrease_quantity(request, order_id):
 
     return redirect('cart')
 
+@login_required
 def remove_from_cart(request, order_id):
     Order.objects.filter(id=order_id).delete()
     return redirect('cart')
