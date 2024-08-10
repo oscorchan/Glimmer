@@ -23,15 +23,35 @@ Produits:
 '''
 
 class Product(models.Model):
+    
+    MATERIAL_CHOICES = [
+        ('Or', 'Or'),
+        ('Argent', 'Argent'),
+        ('Platine', 'Platine'),
+        ('Acier', 'Acier'),
+        ('Rubis', 'Rubis'),
+        ('Saphir', 'Saphir'),
+        ('Emeraude', 'Emeraude'),
+        ('Diamant', 'Diamant'),
+        ('Perles', 'Perles'),   
+    ]
+    
+    CATEGORY_CHOICES = [
+        ('bracelets', 'Bracelet'),
+        ('colliers', 'Collier'),
+        ('boucles-d-oreilles', 'Boucles d\'oreilles'),
+        ('bagues', 'Bague'),     
+    ]
+    
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=128, unique=True, blank=True)
     price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=0)
-    material1 = models.CharField(max_length=50)
+    material1 = models.CharField(max_length=50, choices=MATERIAL_CHOICES)
     material2 = models.CharField(max_length=50, blank=True)
     material3 = models.CharField(max_length=50, blank=True)
     gold_color = models.CharField(max_length=50, blank=True)
-    category = models.CharField(max_length=50)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     description = models.TextField(blank=True)
     thumbnail = models.ImageField(upload_to='products')
 
