@@ -109,3 +109,9 @@ def remove_from_cart(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     order.delete()
     return redirect('cart')
+
+@login_required
+def checkout(request):
+    # Logique pour traiter le paiement
+    # Par exemple, vous pouvez résumer les articles, afficher le total à payer, etc.
+    return redirect('cart')

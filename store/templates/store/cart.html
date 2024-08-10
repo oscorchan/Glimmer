@@ -8,7 +8,7 @@
         {% for order in orders %}
             <div class="cart-item">
                 <h2>{{ order.product.name }}</h2>
-                <img src="{{ order.product.thumbnail.url }}" alt="{{ order.product.name }}" class='product-image-cart'>
+                <img src="{{ order.product.thumbnail.url }}" alt="{{ order.product.name }}" class="product-image-cart">
                 <p>Quantité : {{ order.quantity }}</p>
                 <div class="cart-item-actions">
                     <!-- Bouton pour augmenter la quantité -->
@@ -22,6 +22,11 @@
                 </div>
             </div>
         {% endfor %}
+
+        <!-- Bouton Passer la commande -->
+        <div class="checkout-button">
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Passer la commande</a>
+        </div>
     {% endif %}
 
 {% endblock content %}
