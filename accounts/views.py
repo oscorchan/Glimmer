@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model, login as auth_login, logout as auth_logout, authenticate
 from django.contrib import messages
+from store.models import Order
 
 User = get_user_model()
 
@@ -48,7 +49,8 @@ def logout(request):
     return redirect('index')
 
 def compte(request):
-    if not request.user.is_authenticated:
-        return render(request, 'account/compte.html')
+    if request.user.is_authenticated:
+        orders = Order.objects.filter(user=request.user).order_by('-ordered_date')
+        return render(request, 'accounts/compte.html', {'orders': orders})
     else:
-        return redirect('index')
+        return redirect('login')

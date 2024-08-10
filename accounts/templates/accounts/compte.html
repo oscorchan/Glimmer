@@ -1,9 +1,28 @@
-{% extends "base.html" %}
+<!-- accounts/compte.html -->
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="account-page">
-    <h2>Mon Compte</h2>
-    <p>Vous n'êtes pas connecté. Veuillez vous connecter ou vous inscrire.</p>
-    <a href="{% url 'login' %}">Se connecter</a> | <a href="{% url 'signup' %}">S'inscrire</a>
-</div>
+<h2>Mon Compte</h2>
+
+<h3>Historique des commandes</h3>
+{% if orders %}
+    <ul>
+        {% for order in orders %}
+            <li>
+                <strong>Produit :</strong> {{ order.product.name }} <br>
+                <strong>Quantité :</strong> {{ order.quantity }} <br>
+                <strong>Date de commande :</strong> {{ order.ordered_date|date:"d/m/Y H:i" }} <br>
+                <strong>Statut :</strong> {% if order.ordered %} Commandé {% else %} En cours {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Vous n'avez aucune commande.</p>
+{% endif %}
+
+{% if request.user.is_staff or request.user.is_superuser %}
+    <a href="{% url 'admin:index' %}" class="btn btn-primary">Accéder à l'admin</a>
+{% endif %}
+
+<a href="{% url 'logout' %}">Se déconnecter</a>
 {% endblock %}

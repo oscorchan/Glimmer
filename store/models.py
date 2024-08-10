@@ -34,7 +34,6 @@ class Product(models.Model):
     category = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     thumbnail = models.ImageField(upload_to='products')
-    date_of_parution = models.DateField(blank=False, null=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:

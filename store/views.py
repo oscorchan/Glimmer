@@ -5,7 +5,16 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 def index(request):
+    category = request.GET.get('category')
     products = Product.objects.all()
+    
+    if category:
+        products = products.filter(category=category)
+        
+    context = {
+        'products': products,
+        'selected_category': category,  # Pour afficher la catégorie sélectionnée, si besoin
+    }
     
     sort_order = request.GET.get('sort_order', '')
     min_price = request.GET.get('price_min', '')
