@@ -43,6 +43,12 @@ class Product(models.Model):
         ('bagues', 'Bague'),     
     ]
     
+    GOLD_COLOR_CHOICES = [
+        ('jaune', 'Jaune'),
+        ('blanc', 'Blanc'),
+        ('rose', 'Rose'),
+    ]
+    
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=128, unique=True, blank=True)
     price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
@@ -50,7 +56,7 @@ class Product(models.Model):
     material1 = models.CharField(max_length=50, choices=MATERIAL_CHOICES)
     material2 = models.CharField(max_length=50, blank=True)
     material3 = models.CharField(max_length=50, blank=True)
-    gold_color = models.CharField(max_length=50, blank=True)
+    gold_color = models.CharField(max_length=50, blank=True, choices=GOLD_COLOR_CHOICES)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     description = models.TextField(blank=True)
     thumbnail = models.ImageField(upload_to='products')

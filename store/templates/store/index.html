@@ -32,8 +32,22 @@
         <div class="filter-option">
             <label>Matériaux :</label>
             <div class="checkbox-group">
+                <input type="checkbox" id="perle" name="material" value="Perles" {% if "Perles" in selected_materials %} checked {% endif %}>
+                <label for="perle">Perles</label>
+
                 <input type="checkbox" id="gold" name="material" value="Or" {% if "Or" in selected_materials %} checked {% endif %}>
                 <label for="gold">Or</label>
+
+                <!-- Menu déroulant pour la couleur de l'or -->
+                <div id="gold-color-select" style="display: none;">
+                    <label for="gold_color">Couleur de l'or :</label>
+                    <select id="gold_color" name="gold_color">
+                        <option value="tous" {% if gold_color == "tous" %}selected{% endif %}>Tous</option>
+                        <option value="jaune" {% if gold_color == "jaune" %}selected{% endif %}>Or Jaune</option>
+                        <option value="blanc" {% if gold_color == "blanc" %}selected{% endif %}>Or Blanc</option>
+                        <option value="rose" {% if gold_color == "rose" %}selected{% endif %}>Or Rose</option>
+                    </select>
+                </div>
 
                 <input type="checkbox" id="silver" name="material" value="Argent" {% if "Argent" in selected_materials %} checked {% endif %}>
                 <label for="silver">Argent</label>
@@ -65,6 +79,24 @@
     document.getElementById('filter-form').addEventListener('change', function() {
         this.submit();
     });
+
+    document.getElementById('gold').addEventListener('change', function() {
+        var goldColorSelect = document.getElementById('gold-color-select');
+        if (this.checked) {
+            goldColorSelect.style.display = 'block';
+        } else {
+            goldColorSelect.style.display = 'none';
+        }
+    });
+
+    // Si "Or" est déjà sélectionné au chargement de la page
+    window.onload = function() {
+        var goldCheckbox = document.getElementById('gold');
+        var goldColorSelect = document.getElementById('gold-color-select');
+        if (goldCheckbox.checked) {
+            goldColorSelect.style.display = 'block';
+        }
+    };
 </script>
 
 <!-- Produits -->
