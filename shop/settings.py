@@ -130,3 +130,9 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 AUTH_USER_MODEL = "accounts.Shopper"
+
+# settings.py
+
+LOGIN_URL = 'login'  # Le nom de l'URL vers laquelle Django redirige pour se connecter
+LOGIN_REDIRECT_URL = 'index'  # La page vers laquelle rediriger après une connexion réussie
+
