@@ -12,6 +12,7 @@ def index(request):
     max_price = request.GET.get('price_max')
     materials = request.GET.getlist('material')
     gold_color = request.GET.get('gold_color')
+    search_query = request.GET.get('search', '')
 
     # Filtrer les produits en fonction des critères sélectionnés
     products = Product.objects.all()
@@ -34,6 +35,9 @@ def index(request):
     if 'Or' in materials:
         if gold_color and gold_color != 'tous':
             products = products.filter(gold_color=gold_color)
+            
+    if search_query:
+        products = products.filter(name__icontains=search_query)
 
     # Tri des produits
     if sort_order == 'ascending':
@@ -54,6 +58,7 @@ def index(request):
         'max_price': max_price,
         'selected_materials': materials,
         'gold_color': gold_color,
+        'search_query': search_query,
     }
     
     return render(request, 'store/index.html', context)

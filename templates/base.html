@@ -21,7 +21,9 @@
             <li><a href="{% url 'index' %}?category=bagues">Bagues</a></li>
         </ul>
         <div class="nav-actions">
-            <input type="text" placeholder="Rechercher">
+            <form method="get" action="{% url 'index' %}" class="search-form">
+                <input type="text" name="search" placeholder="Rechercher" value="{{ search_query }}">
+            </form>
             <a href="{% url 'cart' %}" class="icon">
                 <i class="fas fa-shopping-cart"></i>
             </a>
