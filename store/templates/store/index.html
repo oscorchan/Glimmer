@@ -12,6 +12,9 @@
 
 <form id="filter-form" method="get" action="{% url 'index' %}">
     <div class="filter-bar">
+        {% if selected_category %}
+            <input type="hidden" name="category" value="{{ selected_category }}">
+        {% endif %}
         <div class="filter-option">
             <label for="price">Trier par :</label>
             <select id="price" name="sort_order">
